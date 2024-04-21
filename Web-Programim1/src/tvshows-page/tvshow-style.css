@@ -1,0 +1,358 @@
+@import url('https://fonts.googleapis.com/css?family=Jolly+Lodger&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Rubik&display=swap');
+
+:root {
+  --primary: #111111;
+  --secondary: #171A23;
+  --actionColors: #A98F76;
+
+
+}
+
+
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Kanit';
+    box-sizing: border-box;
+    /* FIREFOX */
+    scrollbar-width: none;
+    scrollbar-color: #171A23;
+}
+
+  *::-webkit-scrollbar {
+    width: 6px;
+    
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--primary);
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #FFF;
+    border-radius: 13px;
+    /* border: 1px solid #ffffff; */
+  }
+
+
+body {
+  background-color: var(--primary);
+  /* margin: 0 40px; */
+}
+
+
+
+.mainContainer{display: flex;}
+.leftSection{
+    background-color: var(--primary);
+    width: 250px;
+    height: 100%;
+
+
+}
+.leftSection .container {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    margin-left: 15px;
+
+}
+
+.leftSection .container .genres{
+    width: 100%;
+    margin: 110px auto 20px;
+    color: #FFF;
+    border-radius: 30px;
+    padding: 20px;
+    box-shadow: -2px 7px 44px -22px rgba(178,178,178,0.75);
+    -webkit-box-shadow: -2px 7px 44px -22px rgba(178,178,178,0.75);
+    -moz-box-shadow: -2px 7px 44px -22px rgba(178,178,178,0.75);
+    
+
+}
+
+.leftSection .container .genres .genre-list .listUnordered{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    list-style: none;
+    margin-top: 10px;
+    color: #FFF;
+}
+
+
+.leftSection .container .genres .genre-list .listUnordered a{
+    text-decoration: none;
+    color: #FFF;
+    cursor: pointer;
+}
+
+
+.leftSection .container .genres .genre-list .listUnordered a:hover{
+    border-bottom: solid 0.4px #FFF;
+}
+
+
+.leftSection .container .filters{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 250px;
+    margin-top: 30px;
+    margin-left: 40px;
+    color: #FFF;
+    border-radius: 30px;
+    padding: 20px;
+    box-shadow: -2px 7px 44px -22px rgba(178,178,178,0.75);
+    -webkit-box-shadow: -2px 7px 44px -22px rgba(178,178,178,0.75);
+    -moz-box-shadow: -2px 7px 44px -22px rgba(178,178,178,0.75);
+    
+}
+
+
+.leftSection .container .release-dates {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 60px auto;
+    color: #FFF;
+}
+
+
+.leftSection .container .release-dates .dates input {
+    width: 100%;
+}
+
+
+
+.mainContainer .movies-list {
+    margin-left: 100px;
+}
+
+.mainContainer .movies-list .container .images-row {
+    margin: 120px auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    
+}
+
+.mainContainer .movies-list .container .images-row .img {
+    position: relative;
+    color: #FFF;
+    height: 50vh;
+    letter-spacing: 0.8px;
+    border-radius: 20px;
+    transition: background-color 0.3s;
+}
+
+.mainContainer .movies-list .container .images-row .img > p {
+    text-align: center;
+    margin-top: -5px;
+    background-color: #574a3f;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+
+.mainContainer .movies-list .container .images-row .img img {
+    height: 45vh;
+    width: 30vh;
+    border-radius: 20px;
+    box-shadow: -2px 7px 44px -22px rgba(178,178,178,0.75);
+    -webkit-box-shadow: -2px 7px 44px -22px rgba(178,178,178,0.75);
+    -moz-box-shadow: -2px 7px 44px -22px rgba(178,178,178,0.75);
+    transition: filter 0.3s;
+    position: relative; 
+    z-index: 0; 
+}    
+
+.mainContainer .movies-list .container .images-row .img:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.mainContainer .movies-list .container .images-row .img .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1;
+    bottom: 30px;
+}
+
+
+.mainContainer .movies-list .container .images-row .img:hover .overlay {
+    opacity: 1;
+}
+
+.mainContainer .movies-list .container .images-row .img .overlay .add-to-watchlist {
+    font-size: 2em;
+    color: #111;
+    background-color: #FFF;
+    border: none;
+    border-radius: 50%;
+    padding: 3px;
+    transition: opacity 0.3s;
+}
+
+.mainContainer .movies-list .container .images-row .img:hover .overlay .add-to-watchlist {
+    opacity: 1;
+}
+
+
+
+
+
+
+@media screen and (max-width: 1300px) {
+    .mainContainer {
+        flex-direction: column;
+    }
+
+    .leftSection {
+        width: 100%;
+        margin: 0;
+    }
+
+    .leftSection .container {
+        flex-direction: column;
+        margin-left: 0;
+    }
+
+    .leftSection .container h3{
+        margin-top: 50px;
+    }
+    .leftSection .container .genres {
+        text-align: center;
+        font-size: 1.4rem;
+    }
+
+    .leftSection .container .genres .listUnordered {
+        display: flex;
+        justify-content: center;
+    }
+
+    .leftSection .container .genres,
+    .leftSection .container .filters {
+        width: 100%;
+        margin: 20px 0;
+    }
+
+
+    .mainContainer .movies-list {
+        margin-left: auto;
+        margin-right: auto;
+        justify-content: center;
+    }
+
+    .mainContainer .movies-list .container .images-row {
+        margin: 20px auto; 
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+   
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+    .mainContainer {
+        flex-direction: column;
+    }
+
+    .leftSection {
+        width: 100%;
+        margin: 0;
+    }
+
+    .leftSection .container {
+        flex-direction: column;
+    }
+
+    .leftSection .container h3{
+        margin-top: 30px;
+    }
+
+
+
+    .leftSection .container .genres,
+    .leftSection .container .filters {
+        width: 100%;
+        margin: 20px 0;
+    }
+
+    .leftSection .container .release-dates {
+        flex-direction: column;
+    }
+
+    .mainContainer .movies-list {
+        margin-left: auto;
+        margin-right: auto;
+        justify-content: center;
+    }
+
+    .mainContainer .movies-list .container .images-row {
+        margin: 20px auto; 
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+   
+}
+
+
+
+
+@media screen and (max-width: 400px) {
+    .mainContainer {
+        flex-direction: column;
+    }
+
+    .leftSection {
+        width: 100%;
+        margin: 0;
+    }
+
+    .leftSection .container {
+        flex-direction: column;
+    }
+
+    .leftSection .container h3{
+        margin-top: 30px;
+    }
+
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
