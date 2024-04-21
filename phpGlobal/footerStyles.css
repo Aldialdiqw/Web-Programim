@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css?family=Jolly+Lodger&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Rubik&display=swap');
+
+:root {
+  --primary: #111111;
+  --secondary: #171A23;
+  --actionColors: #A98F76;
+
+
+}
+
+
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Kanit';
+    box-sizing: border-box;
+    /* FIREFOX */
+    scrollbar-width: none;
+    scrollbar-color: #171A23;
+}
+
+
+  *::-webkit-scrollbar {
+    width: 6px;
+
+    
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--primary);
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #FFF;
+    border-radius: 13px;
+    /* border: 1px solid #ffffff; */
+  }
+
+
+body {
+  background-color: var(--primary);
+  /* margin: 0 40px; */
+}
+
+
+/*Footer*/
+footer {
+    background-color: black;
+    margin-top: 7%;
+    margin-bottom: -50px;
+  }
+  .footerContainer {
+    width: 100%;
+    padding: 70px 30px 20px;
+  }
+  .social {
+    display: flex;
+    justify-content: center;
+  }
+  .social a {
+    text-decoration: none;
+    padding: 10px;
+    background-color: white;
+    margin: 10px;
+    border-radius: 30%;
+  }
+  .social a i {
+    font-size: 2em;
+    color: black;
+    opacity: 0.9;
+  }
+  .social a:hover {
+    background-color: #111;
+    transition: 0.5s;
+  }
+  
+  .social a:hover i {
+    color: white;
+    transition: 0.5s;
+  }
+  .footerNav {
+    margin: 30px 0;
+  }
+  .footerNav ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+  }
+  .footerNav ul li a {
+    color: white;
+    margin: 20px;
+    text-decoration: none;
+    font-size: 1.3em;
+    opacity: 0.7;
+    transition: 0.5s;
+  }
+  .footerNav ul li a:hover {
+    opacity: 1;
+  }
+  .footerBottom {
+    background-color: #000;
+    padding: 20px;
+    text-align: center;
+  }
+  .footerBottom p {
+    color: white;
+  }
+  @media (max-width: 700px){
+    .footerNav ul {
+        flex-direction: column;
+    }
+    .footerNav ul li {
+        width: 100%;
+        text-align: center;
+        margin: 10px;
+    }
+  }
