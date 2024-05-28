@@ -3,14 +3,26 @@ session_start();
 
 require_once 'APIRequest.php';
 
+
 $apiKeyU = '93c03bed3114307866a4b78a224fca1e';
 $apiRequest = new APIRequest($apiKeyU);
+
 
 $trendingMovies = $apiRequest->getTrendingMovies();
 
 ?>
+<?php
 
+$to = 'recipients@email-address.com';
+$subject = 'Hello from XAMPP!';
+$message = 'This is a PapercutSMTP test';
+$headers = "From: your@email-address.com\r\n";
 
+if (mail($to, $subject, $message, $headers)) {
+   echo "SUCCESS";
+} else {
+   echo "ERROR";
+}?>
 
 
 <!DOCTYPE html>

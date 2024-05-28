@@ -1,21 +1,30 @@
 <?php
 session_start();
 
+// Function to handle custom errors with SweetAlert
+function handleCustomErrorWithSweetAlert($errorMessage, $redirectLocation) {
+
+    $_SESSION['custom_error'] = $errorMessage;
+   
+    $_SESSION['error_type'] = 'sweet_alert';
+    // Redirect to the specified location
+    header("Location: $redirectLocation");
+    exit();
+}
+
 require_once('Database.php');
 require_once('User.php');
 
-if($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $db = new Database();   
+    $db = new Database();
     $user = new User($db);
-
 
     $userId = $user->authenticateUser($email, $password);
 
-    if($userId) {
-    
+    if ($userId) {
         $_SESSION['user_id'] = $userId;
 
         $userRole = $user->getUserRole($email);
@@ -24,23 +33,14 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
         $username = $user->getUserName($email);
         $_SESSION['username'] = $username;
 
-        if($userRole === 'admin') {
-            header("Location: /Web-Programim/src/index.php");
-        } else {
-            header("Location: /Web-Programim/src/index.php");
-        }
-
+        header("Location: /Web-Programim/src/index.php");
         exit();
     } else {
-        $_SESSION['login_error'] = 'Invalid Email/Password combination.';
-        header("Location: /Web-Programim/register-login/LoginForm.php");
-        exit();
-
+        handleCustomErrorWithSweetAlert('Email/Fjalëkalim i pavlefshëm.', '/Web-Programim/register-login/LoginForm.php');
     }
 
     $db->closeConnection();
 } else {
-    echo 'Invalid request method';
+    handleCustomErrorWithSweetAlert('Metodë e pavlefshme e kërkesës', '/Web-Programim/register-login/LoginForm.php');
 }
-
-
+?>

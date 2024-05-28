@@ -1,0 +1,59 @@
+PHP dhe MySQL
+o Definimi dhe kuptimi i kodit të PHP-së për konseksion me bazën e të dhënave
+o Krijimi i tabelave të ndryshme përmes PHP-së dhe të ruhen në DB
+o Insertimi, Fshirja, Update-imi i DB nga PHP
+o Opsionale: Lidhja me DB përmes një PHP skripte të jashtme
+
+
+
+PHP (konc. e avansuara) Pointerët dhe SQL Injection
+o Përdorimi dhe kuptimi i pointerëve në PHP
+o Përcjellja përmes referencës
+o Vendosja e referencave në mes të anëtarëve të vargut
+o Përcjellja e vlerës përmes referencës
+o Përdorimi i funksioneve me referencë
+o Kthimi përmes referencës
+o Psh Çasje në variablat globale etj.
+o Largimi i referencës
+o Përdorimi i funksionit unset()
+
+------------------------------
+o MySQL Injection
+o Çfarë metoda janë përdorur për t’u mbrojtur nga SQL Injection
+o Çfarë është OBLIGATIVE të përdorim gjithmonë kur dërgojmë të dhëna në
+server nga format apo skriptat në PHP?
+o Demonstrimi i shembullit të mbrojtjes nga MySQL Injection...
+
+PHP (konc. e avansuara) Files, Error Handling dhe PHP Email
+o Përdorimi i funskioneve themelore për manipulime me fajlla (si include(),
+require(), fopen(r,w,...), fclose(...), fsize(), fread(), fwrite()
+
+
+Error Handling
+
+
+        o Me rëndësi: definimi i funksionit për trajtim të gabimeve error_handler me të
+        gjitha parapmetrat si (errno, errstring, errfile, errline, errcontext)
+o Definimi dhe trajtimi i disa prej gabimeve në projektin, ku trajtimi është bërë në
+formën customize, ku vetë janë deklaruar gabimet dhe të till (në gjuhën shqipe)
+të paraqiten edhe gjatë trajtimit.
+o Trajtimi i përjashtimeve me TRY, CATCH dhe THROW...
+
+
+PHP EMAIL
+o Përdorimi i funskionit EMAIL në PHP me të gjitha parametrat email(to, subject,
+message, additional headers etj)
+o Dërgimi i emailave përmes një forme standarde
+o ME RËNDËSI: përdorimi i PHP Email për dërgim të emailit nga një email i
+zakonshëm (gmail, yahoo, hotmail. )
+o OPSIONALE: Përdorimi i i FILTER_SANITIZE për mbrojtje...
+
+
+
+PHP dhe AJAX
+o Përdorimi i AJAX teknologjisë
+o Kuptimi dhe definimi i të gjitha funskioneve elementare për përdorim të AJAX ku
+më rëndësi është përdorimi dhe manipulimi me të gjitha vetitë dhe metodat e JS
+Objektit – XMLHttpRequest
+o Përdorimi i AJAX-it për lexim dhe update-im nga një PHP skriptë
+o Përdorimi i AJAX-it për lexim dhe update-im nga një DB (psh. MySQL)

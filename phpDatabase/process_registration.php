@@ -29,6 +29,19 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
         setcookie("user_id", $userID, time() + 3600, "/");
         header("Location: /Web-Programim/register-login/LoginForm.php");
         $cookies = $_COOKIE;
+
+
+$to = $email;
+$subject = 'IMDB-Clone';
+$message = 'Your account has been created';
+$headers = "From: aldi.keka@gmail.com\r\n"; // Gmail requires a valid sender address
+
+if (mail($to, $subject, $message, $headers)) {
+    echo "SUCCESS";
+} else {
+    echo "ERROR";
+}
+
         exit();
     } else {
         echo 'Error : Registration Failed!';
