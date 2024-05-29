@@ -4,14 +4,27 @@ session_start();
 // Replace 'YOUR_API_KEY' with your actual TMDb API key
 $apiKey = '93c03bed3114307866a4b78a224fca1e';
 
-// Fetch a list of popular movies from TMDb API
+// URL for fetching data from TMDb API
 $apiUrl = "https://api.themoviedb.org/3/trending/movie/week?api_key=93c03bed3114307866a4b78a224fca1e";
-$response = file_get_contents($apiUrl);
+
+// Function to get the API response using XMLHttpRequest
+function getApiResponse($url) {
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $response = curl_exec($ch);
+    curl_close($ch);
+    return $response;
+}
+
+// Fetch API response asynchronously
+$response = getApiResponse($apiUrl);
+
+// Decode the JSON response
 $movies = json_decode($response, true)['results'];
 
-
-
 ?>
+
 
 
 <!DOCTYPE html>
@@ -87,12 +100,13 @@ $movies = json_decode($response, true)['results'];
                             // Check if user is logged in
                             if (isset($_SESSION['user_id'])) :
                             ?>
-                            <form method="post" action="watchlist.php" class="watchlist-form">
-                                <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
-                                <input type="hidden" name="movie_id" value="<?= $movie['id'] ?>">
-                                <input type="hidden" name="poster_path" value="https://image.tmdb.org/t/p/w500<?= $movie['poster_path'] ?>">
-                                <button type="submit" class="add-to-watchlist" title="Add to Watchlist" id="watchListBTN">+</button>
-                            </form>
+                         <form method="post" action="watchlist.php" class="watchlist-form">
+    <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
+    <input type="hidden" name="movie_id" value="<?= $movie['id'] ?>">
+    <input type="hidden" name="poster_path" value="https://image.tmdb.org/t/p/w500<?= $movie['poster_path'] ?>">
+    <button type="button" class="add-to-watchlist" title="Add to Watchlist" id="watchListBTN">+</button>
+</form>
+
                             <?php else : ?>
                             <button class="add-to-watchlist" title="Add to Watchlist"><a style="text-decoration: none;" href="/Web-Programim/register-login/LoginForm.php">+</a></button>
                             <?php endif; ?>
@@ -105,6 +119,29 @@ $movies = json_decode($response, true)['results'];
         
       </div>
 
+      <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("watchListBTN").addEventListener("click", function() {
+            var form = document.querySelector(".watchlist-form");
+            var formData = new FormData(form);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "watchlist.php", true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.status === "success") {
+                        alert(response.message);
+                    } else {
+                        alert(response.message);
+                    }
+                }
+            };
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send(formData);
+        });
+    });
+</script>
 
 
 

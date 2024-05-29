@@ -34,7 +34,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 $to = $email;
 $subject = 'IMDB-Clone';
 $message = 'Your account has been created';
-$headers = "From: aldi.keka@gmail.com\r\n"; // Gmail requires a valid sender address
+$headers = "From: aldi.keka@gmail.com\r\n";
 
 if (mail($to, $subject, $message, $headers)) {
     echo "SUCCESS";

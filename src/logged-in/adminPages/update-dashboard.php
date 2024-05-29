@@ -21,6 +21,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_id'])) {
     exit();
 }
 ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        // Submit form via AJAX
+        $('.user-form').submit(function(e){
+            e.preventDefault(); // Prevent form submission
+
+            // Serialize form data
+            var formData = $(this).serialize();
+
+            // AJAX request
+            $.ajax({
+                url: $(this).attr('action'), // Form action attribute
+                type: $(this).attr('method'), // Form method attribute
+                data: formData,
+                success: function(response){
+                    // Handle success response
+                    console.log(response);
+                    // You can show a success message or perform any other action here
+                },
+                error: function(xhr, status, error){
+                    // Handle error
+                    console.error(error);
+                    // You can show an error message or perform any other action here
+                }
+            });
+        });
+    });
+</script>
+
 
 <!DOCTYPE html>
 <html lang="en">

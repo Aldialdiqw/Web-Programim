@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $review->addReview($loggedInUserId, $movieId, $rating, $comment);
 
     if ($result) {
-        echo "Review added successfully!";
+        header("Location: /Web-Programim/src/movies-page/movies-page.php");
     } else {
         echo "Failed to add review.";
     }

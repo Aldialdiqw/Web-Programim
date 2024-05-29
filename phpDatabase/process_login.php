@@ -2,10 +2,8 @@
 session_start();
 
 // Function to handle custom errors with SweetAlert
-function handleCustomErrorWithSweetAlert($errorMessage, $redirectLocation) {
-
+function handleCustomErrorWithSweetAlert(&$errorMessage, &$redirectLocation) {
     $_SESSION['custom_error'] = $errorMessage;
-   
     $_SESSION['error_type'] = 'sweet_alert';
     // Redirect to the specified location
     header("Location: $redirectLocation");
@@ -27,6 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($userId) {
         $_SESSION['user_id'] = $userId;
 
+        // Use references to hold error message and redirect location
+        $errorMessage = null;
+        $redirectLocation = null;
+
         $userRole = $user->getUserRole($email);
         $_SESSION['role'] = $userRole;
 
@@ -36,11 +38,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("Location: /Web-Programim/src/index.php");
         exit();
     } else {
-        handleCustomErrorWithSweetAlert('Email/Fjalëkalim i pavlefshëm.', '/Web-Programim/register-login/LoginForm.php');
+        // Pass error message and redirect location by reference
+        $errorMessage = 'Email/Fjalëkalim i pavlefshëm.';
+        $redirectLocation = '/Web-Programim/register-login/LoginForm.php';
+        handleCustomErrorWithSweetAlert($errorMessage, $redirectLocation);
     }
 
     $db->closeConnection();
 } else {
-    handleCustomErrorWithSweetAlert('Metodë e pavlefshme e kërkesës', '/Web-Programim/register-login/LoginForm.php');
+    // Pass error message and redirect location by reference
+    $errorMessage = 'Metodë e pavlefshme e kërkesës';
+    $redirectLocation = '/Web-Programim/register-login/LoginForm.php';
+    handleCustomErrorWithSweetAlert($errorMessage, $redirectLocation);
 }
 ?>

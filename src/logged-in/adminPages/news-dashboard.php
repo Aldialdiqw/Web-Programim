@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 
 require_once('/xampp/htdocs/Web-Programim/phpDatabase/Database.php');
@@ -17,7 +17,7 @@ $allNews = [];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['sortButton'])) {
     $sortingMethod = $_POST['sortingMethod'];
-    applySorting($sortingMethod);
+    applySorting($news, $sortingMethod, $allNews);
 } else {
     // If no sorting is applied, fetch all news
     $allNews = $news->getAllNews();
@@ -29,9 +29,7 @@ function compareNewsTitles($a, $b) {
 }
 
 // Function to apply sorting based on selected method
-function applySorting($method) {
-    global $news, $allNews;
-    
+function applySorting($news, $method, &$allNews) {
     $allNews = $news->getAllNews(); // Refresh news list
     
     switch ($method) {
@@ -59,7 +57,6 @@ function applySorting($method) {
     }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -96,6 +93,9 @@ function applySorting($method) {
                     <button type="submit" name="sortButton">Sort</button>
                 </form>
                 
+                <!-- Add News Link -->
+                <a href="\Web-Programim\src\logged-in\phpScripts\add-news.php" id="addNews">Add News</a>
+
                 <!-- Display News -->
                 <table class="greyGridTable">
                     <thead>
@@ -112,32 +112,12 @@ function applySorting($method) {
                                 <td><?= $newsItem['title'] ?></td>
                                 <!-- Add more columns if needed -->
                             </tr>
-                        <?php endforeach; ?>
+                        <?php endforeach;
+                        unset($conn); ?>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-
 </body>
 </html>
-
-
-            <!-- RIGHT PANNEL  -->
-            <div class="right-panel">
-                <div class="tableContainer">
-                <h2>News Panel</h2>
-                <a href="\Web-Programim\src\logged-in\phpScripts\add-news.php" id="addUser">Add News</a>
-                <?php
-                $news->fetchNews();
-                ?>
-                </div>
-                
-
-                
-            </div>
-        </div>
-
-
-    </body>
-    </html>

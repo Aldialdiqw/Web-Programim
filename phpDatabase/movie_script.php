@@ -1,13 +1,16 @@
 <?php
-require_once ('Database.php');
-require_once ('Movies.php');
+require_once('Database.php');
+require_once('Movies.php');
 
 $db = new Database();
 $moviesObject = new Movies($db);
 
 $apiKey = '93c03bed3114307866a4b78a224fca1e';
 
-$numberOfPages = 5; 
+$numberOfPages = 5;
+
+// Get a reference to the database connection
+$connRef =& $db->getDBConnection();
 
 for ($page = 1; $page <= $numberOfPages; $page++) {
     $apiUrl = "https://api.themoviedb.org/3/trending/all/week?api_key=93c03bed3114307866a4b78a224fca1e&page=$page";
@@ -19,7 +22,8 @@ for ($page = 1; $page <= $numberOfPages; $page++) {
         $title = isset($item['title']) ? $item['title'] : (isset($item['name']) ? $item['name'] : '');
         $imageUrl = $item['poster_path'];
 
-        $result = $moviesObject->addMovie($tmdbItemId, $title, $imageUrl);
+        // Pass the reference to the addMovie method
+        $result = $moviesObject->addMovie($tmdbItemId, $title, $imageUrl, $connRef);
 
         if ($result) {
             echo "Item added successfully: $title\n";
@@ -29,4 +33,5 @@ for ($page = 1; $page <= $numberOfPages; $page++) {
     }
 }
 
-$db->closeConnection();
+// Close the connection using the reference
+$db->closeConnection($connRef);

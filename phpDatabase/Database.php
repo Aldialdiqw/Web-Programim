@@ -10,7 +10,7 @@ class Database {
         $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->database);
 
         if ($this->conn->connect_error) {
-            die("Connection Failed: " . $this->conn->connect_error);
+            throw new Exception("Connection Failed: " . $this->conn->connect_error);
         }
     }
 
@@ -22,5 +22,12 @@ class Database {
         $this->conn->close();
     }
 }
-?>
 
+try {
+    $db = new Database();
+    // Do something with $db
+} catch (Exception $e) {
+    echo "Error: " . $e->getMessage();
+    // Handle the error gracefully, log it, or display a user-friendly message
+}
+?>
