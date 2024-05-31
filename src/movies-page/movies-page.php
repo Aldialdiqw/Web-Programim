@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 
@@ -98,15 +99,15 @@ $movies = json_decode($response, true)['results'];
                         <div class="overlay">
                         <?php
                             // Check if user is logged in
-                            if (isset($_SESSION['user_id'])) :
+                           if (isset($_SESSION['user_id'])) :
                             ?>
-                         <form method="post" action="watchlist.php" class="watchlist-form">
-    <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
-    <input type="hidden" name="movie_id" value="<?= $movie['id'] ?>">
-    <input type="hidden" name="poster_path" value="https://image.tmdb.org/t/p/w500<?= $movie['poster_path'] ?>">
-    <button type="button" class="add-to-watchlist" title="Add to Watchlist" id="watchListBTN">+</button>
-</form>
-
+                            <form method="post" action="watchlist.php" class="watchlist-form">
+                                <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
+                                <input type="hidden" name="tmdb_id" value="<?= $movie['id'] ?>">
+                        
+                                <input type="hidden" name="poster_path" value="https://image.tmdb.org/t/p/w500<?= $movie['poster_path'] ?>">
+                                <button type="submit"  class="add-to-watchlist" title="Add to Watchlist" id="watchListBTN">+</button>
+                            </form>
                             <?php else : ?>
                             <button class="add-to-watchlist" title="Add to Watchlist"><a style="text-decoration: none;" href="/Web-Programim/register-login/LoginForm.php">+</a></button>
                             <?php endif; ?>
@@ -119,29 +120,6 @@ $movies = json_decode($response, true)['results'];
         
       </div>
 
-      <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        document.getElementById("watchListBTN").addEventListener("click", function() {
-            var form = document.querySelector(".watchlist-form");
-            var formData = new FormData(form);
-
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "watchlist.php", true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var response = JSON.parse(xhr.responseText);
-                    if (response.status === "success") {
-                        alert(response.message);
-                    } else {
-                        alert(response.message);
-                    }
-                }
-            };
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.send(formData);
-        });
-    });
-</script>
 
 
 

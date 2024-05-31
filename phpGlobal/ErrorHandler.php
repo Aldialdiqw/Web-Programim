@@ -14,7 +14,7 @@ function myErrorHandler($errno, $errstr, $errfile, $errline, $errcontext) {
         exit(1);
     }
 
-    // Mos e ekzekuto trajtuesin PHP të gabimeve
+    
     return true;
 }
 

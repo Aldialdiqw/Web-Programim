@@ -140,12 +140,35 @@ class Movies {
         return $row['count'] > 0;
     }
     
-
+    public function movieExistsByTMDBId($tmdbId) {
+        $sql = "SELECT COUNT(*) AS count FROM movies WHERE tmdb_id = ?";
+        $stmt = $this->mov->getDBConnection()->prepare($sql);
+        $stmt->bind_param("i", $tmdbId);
+        $stmt->execute();
+    
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+    
+        return $row['count'] > 0;
+    }
+    
+    public function getMovieIdByTMDBId($tmdbId) {
+        $sql = "SELECT id FROM movies WHERE tmdb_id = ?";
+        $stmt = $this->mov->getDBConnection()->prepare($sql);
+        $stmt->bind_param("i", $tmdbId);
+        $stmt->execute();
+    
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+    
+        return $row['id'];
+    }
+    
 
 
     public function getUserWatchlist($userId) {
-        $sql = "SELECT movies.title, watchlist.image_url FROM movies
-                INNER JOIN watchlist ON movies.tmdb_id = watchlist.movie_id
+        $sql = "SELECT movies.title, movies.tmdb_id, watchlist.movie_id, watchlist.image_url FROM movies
+                INNER JOIN watchlist ON movies.id = watchlist.movie_id
                 WHERE watchlist.user_id = ?";
         $stmt = $this->mov->getDBConnection()->prepare($sql);
         $stmt->bind_param("i", $userId);

@@ -28,6 +28,9 @@ function compareTitles($a, $b) {
     return strcmp($a['title'], $b['title']);
 }
 
+function compareTitlesDesc($a, $b) {
+    return strcmp($b['title'], $a['title']);
+}
 // Function to apply sorting based on selected method
 function applySorting($method) {
     global $movies, $allMovies;
@@ -36,10 +39,10 @@ function applySorting($method) {
     
     switch ($method) {
         case 'sort':
-            sort($allMovies);
+            usort($allMovies, 'compareTitles');
             break;
         case 'rsort':
-            rsort($allMovies);
+            usort($allMovies, 'compareTitlesDesc');
             break;
         case 'asort':
             asort($allMovies);

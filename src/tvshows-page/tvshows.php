@@ -85,7 +85,7 @@ $tvShows = json_decode($response, true)['results'];
                             ?>
                             <form method="post" action="/Web-Programim/src/movies-page/watchlist.php" class="watchlist-form">
                                 <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
-                                <input type="hidden" name="movie_id" value="<?= $tvshow['id'] ?>">
+                                <input type="hidden" name="tmdb_id" value="<?= $tvshow['id'] ?>">
                                 <input type="hidden" name="poster_path" value="https://image.tmdb.org/t/p/w500<?= $tvshow['poster_path'] ?>">
                                 <button type="submit" class="add-to-watchlist" title="Add to Watchlist" id="watchListBTN">+</button>
                             </form>
